@@ -19,3 +19,6 @@ td {
 .errors {
   background-color: rgba(220, 20, 60, 0.24);
 }
+.is-hidden{
+  display: none;
+}

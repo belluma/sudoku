@@ -62,18 +62,16 @@ const drawTable = (index) => {
 
 const fillTable = (index, attempt = 0, speed = 300, solve = false) => {
     if (index < 0) {
-        console.error("no solution exists");
+        alert("no solution exists");
         return;
     }
     const row = Math.floor(index / 9);
     const col = index % 9;
-
     if (attempt > 0 && steps[index][row][col]) {
         trackback(index, speed, solve);
         return;
     }
-
-    let possibleNumbers = randomRow
+    const possibleNumbers = randomRow
         .filter((n) => activeColumn(col, steps[index]).indexOf(n) === -1)
         .filter((n) => activeBlock(row, col, steps[index]).indexOf(n) === -1)
         .filter((n) => steps[index][row].indexOf(n) === -1);
@@ -83,7 +81,6 @@ const fillTable = (index, attempt = 0, speed = 300, solve = false) => {
             return;
         }
     }
-
     let newMatrix = steps[index].map((a) => [...a]);
     if (!newMatrix[row][col]) newMatrix[row][col] = possibleNumbers[attempt];
     steps.push(newMatrix);
@@ -109,8 +106,15 @@ const clearMatrix = () => {
     steps = [matrix];
     drawTable(0);
 };
+const showLoading = () => {
+    document.getElementById("loading").classList.remove("is-hidden");
+}
+const hideLoading = () => {
+    document.getElementById("loading").classList.add("is-hidden");
+}
 
 const createSudoku = () => {
+    showLoading();
     steps = [matrix];
     drawTable(0);
     fillTable(0, 0, 0);
@@ -135,9 +139,10 @@ const createCluesForSudoku = () => {
     );
     steps.splice(1);
     drawTable(0);
+    hideLoading()
 };
 const solveSudoku = () => {
-    if(errors){
+    if (errors) {
         alert("Remove wrong entries first!");
         return;
     }
