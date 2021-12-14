@@ -1,0 +1,21 @@
+td {
+  height: 20px;
+  width: 20px;
+  text-align: center;
+}
+.border_bottom {
+  border-bottom: solid;
+}
+.border_right {
+  border-right: solid;
+}
+.marked {
+  background-color: rgba(0, 0, 0, 0.15);
+  /* opacity: 0.25; */
+}
+.clues {
+  background-color: rgba(158, 158, 255, 0.199);
+}
+.errors {
+  background-color: rgba(220, 20, 60, 0.24);
+}
